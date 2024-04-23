@@ -12,7 +12,6 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sesv2.SesV2Client;
 
 @Configuration
-@PropertySource("classpath:/application-local.properties")
 @RequiredArgsConstructor
 public class EmailConfig {
 
