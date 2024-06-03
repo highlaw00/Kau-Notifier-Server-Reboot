@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
         
     - uses: actions/checkout@v3
-    - run: echo "${{ secrets.APP_PROPERTIES }}" > ./src/main/resources/application-prod.properties
+    - run: echo "${{ secrets.APP_PROPERTIES }}" > ./src/main/resources/application.properties
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
