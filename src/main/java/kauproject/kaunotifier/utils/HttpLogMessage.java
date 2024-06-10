@@ -16,7 +16,6 @@ public class HttpLogMessage {
 
     public static String createLog(ServletRequest request) {
         Map<String, String> requestInfoMap = new HashMap<>();
-        StringBuilder sb = new StringBuilder();
         String clientIP = null;
 
         for (String key: contentKeys) {
@@ -36,9 +35,10 @@ public class HttpLogMessage {
                 }
             }
 
-            if (clientIP == null) requestInfoMap.put("Client IP",request.getRemoteAddr());
+            if (clientIP == null) requestInfoMap.put("Client IP", request.getRemoteAddr());
         }
 
+        StringBuilder sb = new StringBuilder();
         for (String key: contentKeys) {
             sb.append("\n");
             sb.append(key);
