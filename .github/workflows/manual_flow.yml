@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
         
     - uses: actions/checkout@v3
-    - run: echo "${{ secrets.APP_PROPERTIES }}" > ./src/main/resources/application.properties
+    - run: echo "${{ secrets.ENV }}" > .env
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
@@ -64,4 +64,4 @@ jobs:
           script: |
             sudo fuser -k 80/tcp
             sudo systemctl restart redis-server
-            sudo /usr/local/jdk-21/bin/java -jar ~/cicd/*-SNAPSHOT.jar > log.txt 2>&1 &
+            sudo /usr/local/jdk-21/bin/java -jar ~/cicd/*-SNAPSHOT.jar --spring.profiles.active=prod > log.txt 2>&1 &
