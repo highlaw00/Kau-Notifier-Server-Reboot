@@ -10,6 +10,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 public class ProjectSecurityConfig {
@@ -27,7 +28,7 @@ public class ProjectSecurityConfig {
 
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:5500"));
+        config.setAllowedOrigins(List.of("http://localhost:5500", "https://kau-notifier.site"));
         config.setAllowedMethods(Collections.singletonList("*")); // 모든 메서드 허용
         config.setAllowCredentials(true); // 인증 정보를 주고 받는 것을 허용
         config.setAllowedHeaders(Collections.singletonList("*"));
