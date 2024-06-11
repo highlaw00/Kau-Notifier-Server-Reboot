@@ -28,7 +28,12 @@ jobs:
         
     - name: Create .env file
       run: |
-          echo "${{ secrets.ENV }}" >> src/main/resources/.env
+          touch src/main/resources/.env
+          echo "${{ secrets.ENV }}" > src/main/resources/.env
+          
+    - name: Display .env file content
+      run: cat src/main/resources/.env
+
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
