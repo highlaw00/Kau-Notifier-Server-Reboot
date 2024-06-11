@@ -30,7 +30,14 @@ jobs:
     #   run: |
     #       echo "${{ secrets.ENV }}" >> src/main/resources/.env
     - name: Test construct
-      run: ls -al
+      run: |
+          ls -al
+          cd src
+          ls -al
+          cd main
+          ls -al
+          cd resources
+          ls -al
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
