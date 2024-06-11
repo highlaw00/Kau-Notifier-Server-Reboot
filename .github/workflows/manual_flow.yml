@@ -30,6 +30,7 @@ jobs:
       run: |
           touch src/main/resources/.env
           echo "${{ secrets.ENV }}" > src/main/resources/.env
+          head -n 1 src/main/resources/.env
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
