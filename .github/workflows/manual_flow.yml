@@ -61,5 +61,5 @@ jobs:
           script: |
             sudo fuser -k 80/tcp
             sudo systemctl restart redis-server
-            sudo echo "${{ secrets.ENV }}" > ~/cicd/.env
-            java -jar ~/cicd/*-SNAPSHOT.jar --spring.profiles.active=prod > log.txt 2>&1 &
+            sudo echo "${{ secrets.ENV }}" > .env
+            sudo /usr/local/jdk-21/bin/java -jar ~/cicd/*-SNAPSHOT.jar --spring.profiles.active=prod > log.txt 2>&1 &
