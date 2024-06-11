@@ -25,25 +25,13 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        
-    - name: Create .env file
-      run: |
-          touch src/main/resources/.env
-          echo "${{ secrets.ENV }}" > src/main/resources/.env
-          
-    - name: Display .env file content
-      run: cat src/main/resources/.env
-
-    - name: Display tree
-      run: |
-          cd src/main/resources
-          ls -al
-
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew clean build
+      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      with:
+        arguments: build
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -73,4 +61,5 @@ jobs:
           script: |
             sudo fuser -k 80/tcp
             sudo systemctl restart redis-server
+            sudo echo "${{ secrets.ENV }}" > .env
             sudo /usr/local/jdk-21/bin/java -jar ~/cicd/*-SNAPSHOT.jar --spring.profiles.active=prod > log.txt 2>&1 &
