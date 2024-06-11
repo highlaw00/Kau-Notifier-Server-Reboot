@@ -26,8 +26,12 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
-    - uses: actions/checkout@v3
-    - run: echo ${{ secrets.ENV }} > .env
+    - name: Create .env file
+      run: |
+          echo "${{ secrets.ENV }}" >> .env
+          
+    - name: Display .env file content
+      run: cat .env
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
