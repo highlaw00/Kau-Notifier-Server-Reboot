@@ -26,9 +26,12 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
-    - name: Create .env file
+    # - name: Create .env file
+    #   run: |
+    #       echo "${{ secrets.ENV }}" >> src/main/resources/.env
+    - name: Test construct
       run: |
-          echo "${{ secrets.ENV }}" >> src/main/resources/.env
+          cat src/main/resoucres/application.properties
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
