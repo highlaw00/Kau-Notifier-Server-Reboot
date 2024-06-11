@@ -25,15 +25,6 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        
-    - name: Create .env file
-      run: |
-          touch src/main/resources/.env
-          echo "${{ secrets.ENV }}" > src/main/resources/.env
-          
-    - name: Display .env file content
-      run: cat src/main/resources/.env
-
     
     - name: Run chmod to make gradlew executable
       run: chmod +x gradlew
@@ -70,4 +61,5 @@ jobs:
           script: |
             sudo fuser -k 80/tcp
             sudo systemctl restart redis-server
+            sudo echo "${{ secrets.ENV }}" > ~/cicd/.env
             sudo /usr/local/jdk-21/bin/java -jar ~/cicd/*-SNAPSHOT.jar --spring.profiles.active=prod > log.txt 2>&1 &
